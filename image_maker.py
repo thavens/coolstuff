@@ -19,7 +19,8 @@ def resize(img, new_width):
     new_height = int(ratio*new_width)
     return cv2.resize(img, (new_height, new_width))
 
-img = cv2.imread('png1.jpg',0)
+img_name = input('Image Name: ')
+img = cv2.imread(img_name,0)
 img = cv2.medianBlur(img, 5)
 img = adaptive_thresh(img)
 #img = resize(img, 60)
@@ -61,4 +62,4 @@ pts = np.zeros([len(line_segment), 2]);
 for i, pt in enumerate(line_segment):
     pts[i, 0] = pt[0]
     pts[i, 1] = pt[1]
-np.savetxt("imgline.csv", pts, delimiter=",")
+np.savetxt(f'{img_name[:img_name.index(".")]}.csv', pts, delimiter=",")
