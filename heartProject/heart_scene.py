@@ -33,7 +33,7 @@ class Epicycle(mn.VMobject):
         super().__init__(**kwargs)
     
     def generate_points(self):
-        x = np.linspace(-2, 2, 256)
+        x = np.linspace(-2, 2, 1024)
 
         ftop = np.sqrt(1 - (np.abs(x) - 1) ** 2)
         fbot = np.arccos(1 - np.abs(x)) - np.pi
@@ -101,6 +101,6 @@ class HeartCycle(mn.Scene):
             epicycle = Epicycle(2**i)
             epicycle.set_stroke(mn.WHITE)
             self.play(mn.FadeIn(anno))
-            self.play(mn.Create(epicycle), epicycle.animate_circles(), run_time=10, name=f'cycle: {int(2**i)}', rate_func=mn.linear)
+            self.play(mn.Create(epicycle), epicycle.animate_circles(), run_time=10, name=f'cycle: {int(2**i)}')#, rate_func=mn.linear)
             self.wait(1)
             self.play(mn.FadeOut(mn.VGroup(epicycle, anno)))
